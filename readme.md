@@ -1,4 +1,4 @@
-# CIX Tiger Moth Mod (MSFS)
+# Tiger Moth Aerobatic Smoke (MSFS)
 
 This is a mod to Ant's Tiger Moth for MSFS to add aerobatic smoke.
 
