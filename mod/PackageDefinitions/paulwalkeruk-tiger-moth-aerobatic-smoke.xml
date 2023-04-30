@@ -2,7 +2,7 @@
 <AssetPackage Version="0.1.2">
 	<ItemSettings>
 		<ContentType>MISC</ContentType>
-		<Title>CIX Tiger Moth Mod</Title>
+		<Title>Tiger Moth Aerobatic Smoke</Title>
 		<Manufacturer/>
 		<Creator>PaulWalkerUK</Creator>
 	</ItemSettings>
@@ -16,23 +16,23 @@
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>
 			</Flags>
-			<AssetDir>PackageDefinitions\paulwalkeruk-cix-tiger-moth-mod\ContentInfo</AssetDir>
-			<OutputDir>ContentInfo\paulwalkeruk-cix-tiger-moth-mod</OutputDir>
+			<AssetDir>PackageDefinitions\paulwalkeruk-tiger-moth-aerobatic-smoke\ContentInfo</AssetDir>
+			<OutputDir>ContentInfo\paulwalkeruk-tiger-moth-aerobatic-smoke</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="TigerSmoke">
 			<Type>VisualEffectLib</Type>
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>
 			</Flags>
-			<AssetDir>PackageSources\VisualEffectLibs\cix-tiger-moth-mod\VisualEffectLib\</AssetDir>
-			<OutputDir>VisualEffectLibs\cix-tiger-moth-mod\VisualEffectLib\</OutputDir>
+			<AssetDir>PackageSources\VisualEffectLibs\tiger-moth-aerobatic-smoke\VisualEffectLib\</AssetDir>
+			<OutputDir>VisualEffectLibs\tiger-moth-aerobatic-smoke\VisualEffectLib\</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="cfgs">
 			<Type>Copy</Type>
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>
 			</Flags>
-			<AssetDir>PackageSources\Copys\cix-tiger-moth-mod\cfgs\</AssetDir>
+			<AssetDir>PackageSources\Copys\tiger-moth-aerobatic-smoke\cfgs\</AssetDir>
 			<OutputDir>SimObjects\Airplanes\antsairplanes-tiger-moth\</OutputDir>
 		</AssetGroup>
 	</AssetGroups>
