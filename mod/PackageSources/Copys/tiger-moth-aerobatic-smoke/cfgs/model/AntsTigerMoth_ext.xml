@@ -487,6 +487,55 @@ prop_state		1 prop slow to stop
 
 	</Component>
 	
+
+	<Component ID="LOGIC">
+		<UseTemplate Name="ASOBO_GT_Update"> 
+			<FREQUENCY>30</FREQUENCY>
+			<UPDATE_CODE>
+			(A:IS USER SIM,bool)
+			if{
+				(A:GENERAL ENG THROTTLE LEVER POSITION:1,number) 0.05 &lt; (A:GENERAL ENG COMBUSTION:1,number) 0 == ||
+				if{
+					(L:tm_Prefs_Rolling_Resistance,number) 0 &gt; (A:SIM ON GROUND,bool) (A:VELOCITY BODY Z,feet per second) 0 &gt; &amp; &amp;
+					if{
+						(L:tm_Prefs_tailwheel,bool) !
+						if{
+							(A:VELOCITY BODY Z,feet per second) 5 &gt;
+							if{
+								(A:VELOCITY BODY Z,feet per second) (L:tm_Prefs_Rolling_Resistance,number) 30 / - 0 max (&gt;A:VELOCITY BODY Z,feet per second)
+							}					
+							els{
+								(A:GROUND VELOCITY,knots) 2 &gt;
+								if{
+									(A:VELOCITY BODY Z,feet per second) (L:tm_Prefs_Rolling_Resistance,number) 35 / - 0 max (&gt;A:VELOCITY BODY Z,feet per second)
+								}
+								els{
+									(A:VELOCITY BODY Z,feet per second) (L:tm_Prefs_Rolling_Resistance,number) 40 / - 0 max (&gt;A:VELOCITY BODY Z,feet per second)
+								}
+							}					
+						}
+						els{
+							(A:VELOCITY BODY Z,feet per second) 4 &gt;
+							if{
+								(A:VELOCITY BODY Z,feet per second) (L:tm_Prefs_Rolling_Resistance,number) 15 / - 0 max (&gt;A:VELOCITY BODY Z,feet per second)
+							}					
+							els{
+								(A:VELOCITY BODY Z,feet per second)3 &gt;
+								if{
+									(A:VELOCITY BODY Z,feet per second) (L:tm_Prefs_Rolling_Resistance,number) 17.5 / - 0 max (&gt;A:VELOCITY BODY Z,feet per second)
+								}
+								els{
+									(A:VELOCITY BODY Z,feet per second) (L:tm_Prefs_Rolling_Resistance,number) 20 / - 0 max (&gt;A:VELOCITY BODY Z,feet per second)
+								}
+							}
+						}
+					}
+				}
+			}
+			</UPDATE_CODE>
+		</UseTemplate>
+	</Component>
+
 	
 	<Component ID="ENGINEDOORS">
 		<UseTemplate Name="ASOBO_GT_Anim_Code">
@@ -508,7 +557,7 @@ prop_state		1 prop slow to stop
 			<Component ID="air_intake_modern_vis" Node="air_intake_modern_vis">
 				<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_airintake,number) ! (L:tm_Prefs_nose_top,number) ! &amp; } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_airintake,number) ! (L:tm_Prefs_nose_top,number) ! &amp; } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -522,7 +571,7 @@ prop_state		1 prop slow to stop
 			<Component ID="air_intake_vintage_vis" Node="air_intake_vintage_vis">
 				<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_airintake,number) (L:tm_Prefs_nose_top,number) ! &amp; } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_airintake,number) (L:tm_Prefs_nose_top,number) ! &amp; } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -598,7 +647,7 @@ prop_state		1 prop slow to stop
 		<Component ID="pitot_tube_straight" Node="pitot_tube_straight">	
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_Pitot_type,bool) ! } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_Pitot_type,bool) ! } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -612,7 +661,7 @@ prop_state		1 prop slow to stop
 		<Component ID="pitot_tube_bent" Node="pitot_tube_bent">	
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_Pitot_type,bool) } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_Pitot_type,bool) } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -629,7 +678,7 @@ prop_state		1 prop slow to stop
 				<PART_ID>CL_HIGHLIGHT_Pitot1</PART_ID>
 			</UseTemplate>			
 			<UseTemplate Name="ASOBO_GT_Visibility">
-				<VISIBILITY_CODE>(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_Pitot_type,number) ! (L:tm_Prefs_Pitot_cover,number) &amp; } els{ 0 }</VISIBILITY_CODE>
+				<VISIBILITY_CODE>(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_Pitot_type,number) ! (L:tm_Prefs_Pitot_cover,number) &amp; } els{ 0 }</VISIBILITY_CODE>
 			</UseTemplate>
 		</Component>		
 		<Component ID="pitot_tube_cover_bent" Node="pitot_tube_cover_bent">	
@@ -637,7 +686,7 @@ prop_state		1 prop slow to stop
 				<PART_ID>CL_HIGHLIGHT_Pitot2</PART_ID>
 			</UseTemplate>			
 			<UseTemplate Name="ASOBO_GT_Visibility">
-				<VISIBILITY_CODE>(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_Pitot_type,number) (L:tm_Prefs_Pitot_cover,number) &amp; } els{ 0 }</VISIBILITY_CODE>
+				<VISIBILITY_CODE>(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_Pitot_type,number) (L:tm_Prefs_Pitot_cover,number) &amp; } els{ 0 }</VISIBILITY_CODE>
 			</UseTemplate>
 		</Component>		
 
@@ -765,10 +814,33 @@ prop_state		1 prop slow to stop
 			</UseTemplate>			
 			<Update Frequency = "5">
 				<!-- Clear chocks if airborne -->
-				(A:IS USER SIM,bool) if{ (A:SIM ON GROUND,bool) ! (A:Brake Parking Indicator,bool) &amp; if{ (&gt;K:PARKING_BRAKES) } }
+				(A:IS USER SIM,bool)
+				if{ 
+					
+					(A:SIM ON GROUND,bool) ! (A:Brake Parking Indicator,bool) &amp; if{ (&gt;K:PARKING_BRAKES) } 
+					
+					(A:Brake Parking Indicator,bool) (A:SIM ON GROUND,bool) (A:IS SLEW ACTIVE,bool) ! (L:tm_write_fuel_level,number) 29 &gt; (A:CAMERA STATE,number) 9 &lt; &amp; &amp; &amp; &amp;
+					if{
+						(A:IS LATITUDE LONGITUDE FREEZE ON,bool) !
+						if{
+							(&gt;K:FREEZE_LATITUDE_LONGITUDE_TOGGLE)
+							0 (&gt;K:FREEZE_ATTITUDE_SET)						
+							1 (&gt;K:FREEZE_ALTITUDE_SET)								
+						}
+					}
+					els{
+						(A:IS LATITUDE LONGITUDE FREEZE ON,bool) 
+						if{
+							(&gt;K:FREEZE_LATITUDE_LONGITUDE_TOGGLE)	
+							0 (&gt;K:FREEZE_ATTITUDE_SET)
+							0 (&gt;K:FREEZE_ALTITUDE_SET)								
+						}
+					}
+				}
+				
 			</Update>
 			<UseTemplate Name="ASOBO_GT_Visibility">
-				<VISIBILITY_CODE>(A:CAMERA STATE,number) 15 != if{ (A:Brake Parking Indicator,bool) if{ 1 } els{ 0 } } els{ 0 }</VISIBILITY_CODE>
+				<VISIBILITY_CODE>(L:aircraft_in_hangar_view,number) ! if{ (A:Brake Parking Indicator,bool) if{ 1 } els{ 0 } } els{ 0 }</VISIBILITY_CODE>
 			</UseTemplate>
 		</Component>
 		<Component ID="wheel_chock_right" Node="wheel_chock_right">
@@ -776,7 +848,7 @@ prop_state		1 prop slow to stop
 				<PART_ID>CL_HIGHLIGHT_Wheel_chocks_right</PART_ID>
 			</UseTemplate>			
 			<UseTemplate Name="ASOBO_GT_Visibility">
-				<VISIBILITY_CODE>(A:CAMERA STATE,number) 15 != if{ (A:Brake Parking Indicator,bool) if{ 1 } els{ 0 } } els{ 0 }</VISIBILITY_CODE>
+				<VISIBILITY_CODE>(L:aircraft_in_hangar_view,number) ! if{ (A:Brake Parking Indicator,bool) if{ 1 } els{ 0 } } els{ 0 }</VISIBILITY_CODE>
 			</UseTemplate>
 		</Component>
 		<Component ID="Wheel_outer_cover_left" Node="Wheel_outer_cover_left">
@@ -785,7 +857,7 @@ prop_state		1 prop slow to stop
 			</UseTemplate>			
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_outer_wheel_Covers,bool) ! } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_outer_wheel_Covers,bool) ! } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -802,7 +874,7 @@ prop_state		1 prop slow to stop
 			</UseTemplate>			
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_outer_wheel_Covers,bool) ! } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_outer_wheel_Covers,bool) ! } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -819,7 +891,7 @@ prop_state		1 prop slow to stop
 			</UseTemplate>			
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_inner_wheel_Covers,bool) ! } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_inner_wheel_Covers,bool) ! } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -836,7 +908,7 @@ prop_state		1 prop slow to stop
 			</UseTemplate>			
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_inner_wheel_Covers,bool) ! } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_inner_wheel_Covers,bool) ! } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -854,7 +926,7 @@ prop_state		1 prop slow to stop
 			</UseTemplate>			
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_tailwheel,bool) ! } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_tailwheel,bool) ! } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -871,7 +943,7 @@ prop_state		1 prop slow to stop
 			</UseTemplate>			
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-				(A:IS USER SIM,bool) (A:CAMERA STATE,number) 15 != &amp; if{ (L:tm_Prefs_tailwheel,bool) } 
+				(A:IS USER SIM,bool) (L:aircraft_in_hangar_view,number) ! &amp; if{ (L:tm_Prefs_tailwheel,bool) } 
 				els{
 					(A:TITLE,string) slen 12 &gt;
 					if{
@@ -972,17 +1044,6 @@ prop_state		1 prop slow to stop
 			<ANIM_LAG>50</ANIM_LAG>
 		</UseTemplate>
 
-		<Component ID="Cockpit_window04_inside" Node="zzCockpit_window04_inside">
-			<UseTemplate Name="ASOBO_GT_Visibility">
-				<VISIBILITY_CODE>(A:IS USER SIM,bool) if{ (L:Drifter_Prefs_Windscreen_Reflections,bool) ! } els{ 0 }</VISIBILITY_CODE>
-			</UseTemplate>
-		</Component>		
-
-		<Component ID="Cockpit_window06_insideLowReflection" Node="zzCockpit_window06_insideLowReflection">
-			<UseTemplate Name="ASOBO_GT_Visibility">
-				<VISIBILITY_CODE>(A:IS USER SIM,bool) if{ (L:Drifter_Prefs_Windscreen_Reflections,bool) } els{ 1 }</VISIBILITY_CODE>
-			</UseTemplate>
-		</Component>		
 		<UseTemplate Name="ASOBO_GT_Anim_Code">
 			<ANIM_NAME>tm_Fuel_gauge</ANIM_NAME>
 			<ANIM_CODE>(A:FUELSYSTEM TANK LEVEL:1,percent)</ANIM_CODE>
@@ -1045,7 +1106,30 @@ prop_state		1 prop slow to stop
 		<Component ID="tm_Pilot_visibility" Node="tm_Pilot_visibility">
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-					(A:CAMERA STATE,number) 15 !=
+					(A:CAMERA STATE,number) 15 == (A:CAMERA STATE,number) 16 == (A:PLANE IN PARKING STATE,bool) || || 
+					if{
+						(A:CAMERA STATE,number) 16 == (A:PLANE IN PARKING STATE,bool) ! &amp;
+						if{ 
+							(A:PLANE LONGITUDE,degrees) 0.00001 &lt;
+							(A:PLANE LONGITUDE,degrees) -0.00001 &gt;
+							(A:PLANE LATITUDE,degrees) 0.00001 &lt;
+							(A:PLANE LATITUDE,degrees) -0.00001 &gt; &amp; &amp; &amp;
+							if{
+								1 (&gt;L:aircraft_in_hangar_view,number)
+							}
+							els{
+								0 (&gt;L:aircraft_in_hangar_view,number)
+							}								
+						}
+						els{
+							1 (&gt;L:aircraft_in_hangar_view,number)
+						}
+					}
+					els{ 
+						0 (&gt;L:aircraft_in_hangar_view,number)
+					} 
+
+					(L:aircraft_in_hangar_view,number) !
 					if{
 						(A:IS USER SIM,bool) 
 						if{
@@ -1249,7 +1333,7 @@ prop_state		1 prop slow to stop
 		<Component ID="tm_Passenger_visibility" Node="tm_Passenger_visibility">
 			<UseTemplate Name="ASOBO_GT_Visibility">
 				<VISIBILITY_CODE>
-					(A:CAMERA STATE,number) 15 !=
+					(L:aircraft_in_hangar_view,number) !
 					if{
 						(A:IS USER SIM,bool) 
 						if{
@@ -1326,12 +1410,13 @@ prop_state		1 prop slow to stop
 	<Component ID="FX">
 		<UseTemplate Name="Ants_DrifterA582_FX" />
 	</Component>
-    
-    <Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
+	
+	<Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
     <Component ID="WHITE_SMOKE">
         <Parameters Type="Override">
             <FX_CODE>(A:SMOKE ENABLE:5,Bool)</FX_CODE>
-            <FX_GUID>{39CB8801-E874-4144-B810-148C39CDB165}</FX_GUID>
+            <FX_GUID>{B0A1E489-B788-4574-BE00-8ADBCADE3807}</FX_GUID>
+			
         </Parameters>
         <Component ID="TIGER_SMOKE_0" Node="FX_Node_Engine_Exhaust_ext">
             <UseTemplate Name="ASOBO_GT_FX"/>
@@ -1341,7 +1426,7 @@ prop_state		1 prop slow to stop
     <Component ID="BLUE_SMOKE">
         <Parameters Type="Override">
             <FX_CODE>(A:SMOKE ENABLE:6,Bool)</FX_CODE>
-            <FX_GUID>{FCB11DA4-53F5-4C59-84DE-40AD4236575A}</FX_GUID>
+            <FX_GUID>{83C7DC92-EB6A-432C-B494-0ECF656854CF}</FX_GUID>
         </Parameters>
         <Component ID="BLUE_SMOKE_0" Node="FX_Node_Engine_Exhaust_ext">
             <UseTemplate Name="ASOBO_GT_FX"/>
@@ -1353,7 +1438,7 @@ prop_state		1 prop slow to stop
             <FX_CODE>(A:SMOKE ENABLE:4,Bool)</FX_CODE>
             <FX_GUID>{DB273AEE-AA5F-44DE-87E2-1B3CF66E36B1}</FX_GUID>
         </Parameters>
-        <Component ID="BLUE_SMOKE_0" Node="FX_Node_Engine_Exhaust_ext">
+        <Component ID="RED_SMOKE_0" Node="FX_Node_Engine_Exhaust_ext">
             <UseTemplate Name="ASOBO_GT_FX"/>
         </Component>
     </Component>
@@ -1363,6 +1448,7 @@ prop_state		1 prop slow to stop
             (A:IS USER SIM,bool)
             if{
                 (A:PROP DEICE SWITCH,bool)
+				(A:SMOKE ENABLE,bool) or
                 if{
                     (A:SMOKE ENABLE:5,bool) !
                     if{
@@ -1420,5 +1506,6 @@ prop_state		1 prop slow to stop
             }              
         </Update>
     </Component>
+
 </Behaviors>
 </ModelInfo>
