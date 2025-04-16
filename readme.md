@@ -1,6 +1,6 @@
 # Tiger Moth Aerobatic Smoke (MSFS)
 
-This is a mod to [Ant's Tiger Moth for MSFS](https://www.antsairplanes.com/msfstigermoth.html) to add aerobatic smoke.
+This is a mod to [Ant's Tiger Moth for MSFS](https://www.antsairplanes.com/msfstigermoth.html) to add aerobatic smoke. It is based on (and should be used with) v1.4.1
 
 Coloured display smoke (red/white/blue) can be set using the following controls (choose whatever key/joystick combinations as appropriate):
 
