@@ -1415,7 +1415,7 @@ prop_state		1 prop slow to stop
     <Component ID="WHITE_SMOKE">
         <Parameters Type="Override">
             <FX_CODE>(A:SMOKE ENABLE:5,Bool)</FX_CODE>
-            <FX_GUID>{39CB8801-E874-4144-B810-148C39CDB165}</FX_GUID>
+            <FX_GUID>{B0A1E489-B788-4574-BE00-8ADBCADE3807}</FX_GUID>
         </Parameters>
         <Component ID="TIGER_SMOKE_0" Node="FX_Node_Engine_Exhaust_ext">
             <UseTemplate Name="ASOBO_GT_FX"/>
@@ -1425,7 +1425,7 @@ prop_state		1 prop slow to stop
     <Component ID="BLUE_SMOKE">
         <Parameters Type="Override">
             <FX_CODE>(A:SMOKE ENABLE:6,Bool)</FX_CODE>
-            <FX_GUID>{FCB11DA4-53F5-4C59-84DE-40AD4236575A}</FX_GUID>
+            <FX_GUID>{83C7DC92-EB6A-432C-B494-0ECF656854CF}</FX_GUID>
         </Parameters>
         <Component ID="BLUE_SMOKE_0" Node="FX_Node_Engine_Exhaust_ext">
             <UseTemplate Name="ASOBO_GT_FX"/>
@@ -1437,7 +1437,7 @@ prop_state		1 prop slow to stop
             <FX_CODE>(A:SMOKE ENABLE:4,Bool)</FX_CODE>
             <FX_GUID>{DB273AEE-AA5F-44DE-87E2-1B3CF66E36B1}</FX_GUID>
         </Parameters>
-        <Component ID="BLUE_SMOKE_0" Node="FX_Node_Engine_Exhaust_ext">
+        <Component ID="RED_SMOKE_0" Node="FX_Node_Engine_Exhaust_ext">
             <UseTemplate Name="ASOBO_GT_FX"/>
         </Component>
     </Component>
@@ -1447,6 +1447,7 @@ prop_state		1 prop slow to stop
             (A:IS USER SIM,bool)
             if{
                 (A:PROP DEICE SWITCH,bool)
+				(A:SMOKE ENABLE,bool) or
                 if{
                     (A:SMOKE ENABLE:5,bool) !
                     if{
