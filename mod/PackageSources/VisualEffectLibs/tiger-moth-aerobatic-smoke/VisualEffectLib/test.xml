@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<SimBase.Document Type="AceXML" version="1,0">
+    <Descr>AceXML Document</Descr>
+    <WorldBase.Flight>
+        <VisualEffect.VisualEffect InstanceId="{C5641C6C-C092-46B2-9D41-4CBDFA432129}">
+            <Name>test eff</Name>
+            <EmitterList>
+                <ObjectReference InstanceId="{DD7348DD-784A-4688-95CD-79995879F95B}" id="Emitter"/>
+            </EmitterList>
+        </VisualEffect.VisualEffect>
+        <VisualEffect.Emitter InstanceId="{DD7348DD-784A-4688-95CD-79995879F95B}">
+            <ParticleRate>{00000000-0000-0000-0000-000000000000}, 1.000000</ParticleRate>
+            <ParticleInit>
+                <ObjectReference InstanceId="{B2DB129E-853B-42CD-809C-84E82D14D5BC}" id="BlockParticleInit"/>
+            </ParticleInit>
+        </VisualEffect.Emitter>
+        <VisualEffect.BlockParticleInit InstanceId="{B2DB129E-853B-42CD-809C-84E82D14D5BC}">
+            <ParticleUpdate>
+                <ObjectReference InstanceId="{C7694464-2E15-450C-85FA-6965A02FCA1F}" id="BlockParticleUpdate"/>
+            </ParticleUpdate>
+            <ParticleLifetime>
+                <FloatIn>{00000000-0000-0000-0000-000000000000}, 5.000000</FloatIn>
+            </ParticleLifetime>
+            <ParticleSize>
+                <FloatIn>{00000000-0000-0000-0000-000000000000}, 1.000000</FloatIn>
+            </ParticleSize>
+            <ParticleVelocity>
+                <Float3In>{3EBFB49F-E401-443C-B75E-E2015B9D33FC}, 0.000000, 0.000000, 0.000000</Float3In>
+            </ParticleVelocity>
+        </VisualEffect.BlockParticleInit>
+        <VisualEffect.BlockParticleUpdate InstanceId="{C7694464-2E15-450C-85FA-6965A02FCA1F}">
+            <ParticleOutput>
+                <ObjectReference InstanceId="{B6DEA3B4-3CE4-4057-8CB9-B98ADC05E6CD}" id="Output"/>
+            </ParticleOutput>
+        </VisualEffect.BlockParticleUpdate>
+        <VisualEffect.Output InstanceId="{B6DEA3B4-3CE4-4057-8CB9-B98ADC05E6CD}">
+            <ParticleColor>
+                <ColorIn>{816D9032-2A00-4B80-8096-17AC5E4932E6}, 0, 0, 0, 0</ColorIn>
+            </ParticleColor>
+        </VisualEffect.Output>
+        <VisualEffect.GravityVector InstanceId="{6FC6314A-A384-4B1F-AC55-6C06A4224BAA}">
+            <OutputValue>{3EBFB49F-E401-443C-B75E-E2015B9D33FC}</OutputValue>
+            <GravityScale>{00000000-0000-0000-0000-000000000000}, -1.000000</GravityScale>
+        </VisualEffect.GravityVector>
+        <VisualEffect.Vector4 InstanceId="{1BCAA256-D825-45EE-B7A2-6899688285CA}">
+            <OutputValue>{816D9032-2A00-4B80-8096-17AC5E4932E6}</OutputValue>
+            <x>{00000000-0000-0000-0000-000000000000}, 1.000000</x>
+            <y>{00000000-0000-0000-0000-000000000000}, 1.000000</y>
+            <z>{00000000-0000-0000-0000-000000000000}, 1.000000</z>
+            <w>{00000000-0000-0000-0000-000000000000}, 1.000000</w>
+        </VisualEffect.Vector4>
+    </WorldBase.Flight>
+</SimBase.Document>
