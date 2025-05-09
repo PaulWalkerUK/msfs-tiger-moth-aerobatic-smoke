@@ -223,8 +223,8 @@
         </VisualEffect.GetSimVar>
         <VisualEffect.Lerp InstanceId="{507D4AF8-E6BE-46E8-950F-D785016E0B88}">
             <OutputValue>{EDB193A8-FAE0-4626-8A93-C5A7A6132390}</OutputValue>
-            <xVariant>{00000000-0000-0000-0000-000000000000}, 0.300000</xVariant>
-            <yVariant>{00000000-0000-0000-0000-000000000000}, 0.750000</yVariant>
+            <xVariant>{00000000-0000-0000-0000-000000000000}, 0.750000</xVariant>
+            <yVariant>{00000000-0000-0000-0000-000000000000}, 0.300000</yVariant>
             <FXTime>{8E8CCB3C-3BE8-4153-B65C-951699E8E077}, 0.000000</FXTime>
         </VisualEffect.Lerp>
         <VisualEffect.GetParticleAttribute InstanceId="{74F7ADD8-8D72-478F-8E02-3E58B18A95BF}">
