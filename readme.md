@@ -6,6 +6,7 @@ Coloured display smoke (red/white/blue) can be set using the following controls 
 
 Effect             | Control Name             | Suggested Binding
 -------------------|--------------------------|-------------------------------------------
-Toggle White Smoke | Toggle Windshield Deice  | <kbd>i</kbd>
+Toggle White Smoke | Toggle Windshield Deice or Smoke Toggle (MSFS2024) | <kbd>i</kbd>
 Toggle Blue Smoke  | Toggle Engine 1 Anti Ice | <kbd><kbd>Shift</kbd> + <kbd>i</kbd></kbd>
 Toggle Red Smoke   | Toggle Plasma            | <kbd><kbd>Ctrl</kbd> + <kbd>i</kbd></kbd>
+Toggle Smoke Intensity | Toggle G Limiter | <kbd><kbd>Alt</kbd> + <kbd>i</kbd></kbd>
